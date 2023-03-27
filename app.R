@@ -25,7 +25,8 @@ p_load(
   formattable,
   shinyBS,
   nloptr,
-  shinyjs
+  shinyjs,
+  vroom
 )
 
 devtools::install_github('Connor-Bayer/themeBayer')
