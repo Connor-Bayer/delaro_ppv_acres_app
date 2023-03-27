@@ -6,7 +6,7 @@ set.seed(42)
 ### best file that matches data (as of last update) is:
 # .../CloudStorage/OneDrive-Bayer/Delaro Data Request September 2021/corn_pre_spray_model_03_23_2023.csv"
 
-#juan_data_location = #### deprecated
+#juan_data_location = "/Users/connorlennon/Downloads/corn_pre_spray_model_03_23_2023.csv"#### deprecated
 
 # Set initial acreage parameters ------------------------------------------
 max_program_acres <- 480000
@@ -34,8 +34,15 @@ program_acre_weights <- c(`CS Central Plains` = 15000,
 
 program_acre_weights <- program_acre_weights # exclude west
 # setup files from which to work
-#preds <- load_baseline_data('regionalShape/regional_shapefile.shp', path_trial = juan_data_location)
-# preds = fread('preds_file.csv')
+#preds <- load_baseline_data('regionalShape/regional_shapefile.shp', path_trial = juan_data_location) %>% as.data.table()
+#preds = # fread('preds_file.csv')
+#cmby = generate_cm_by(setDT(preds), by_column = 'CP_REGION')
+
+#cmby = cmby %>% mutate(iter = 1) #only one iter on baseline model
+
+#perc_positive = perc_pos_weights(cmby) # generate percent positivity
+
+#init_ppv = ppv(cmby) # get actual model PPV
 
 
 # Plot settings -----------------------------------------------------------

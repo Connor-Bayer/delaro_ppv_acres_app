@@ -60,7 +60,7 @@ ui_2 = fluidPage(
     sidebarLayout(
       sidebarPanel(),mainPanel(
         br(),br(),br(),br(),br(),
-    fileInput("preds", "Upload the corn_preds.rds file",
+    fileInput("pred", "Upload the corn_preds.rds file",
               multiple = F,
               accept = c(".rds")),
     ))),
@@ -238,7 +238,7 @@ ui_2 = fluidPage(
                    )
                  )))
 
-             ),
+             )#,
 
 
 
@@ -256,7 +256,7 @@ ui_2 = fluidPage(
     ))))
 
 # preds <- reactive({
-#   infile <- input$preds
+#   infile <- input$pred()
 #   if (is.null(infile)){
 #     return(NULL)
 #   }
@@ -267,22 +267,28 @@ server <- function(input, output, session){
   # plot reactives
 
   shinyjs::hide(id = "TABSET")
-  observeEvent(input$preds, {
-    if(!is.null(input$preds)){
+  #observeEvent(input$pred, {
+    #if(!is.null(input$pred)){
+    preds = reactive({
+      req(input$pred)
+      readRDS(file = input$pred$datapath)
+      })
+    cmby = reactive({generate_cm_by(setDT(preds()), by_column = 'CP_REGION') %>% mutate(iter = 1)})
 
-      preds = reactive({read_rds(input$preds())})
-      cmby = generate_cm_by(setDT(preds), by_column = 'CP_REGION')
+    #cmby = reactive({cmby()}) #only one iter on baseline model
 
-      cmby$iter = 1 #only one iter on baseline model
+    perc_positive = reactive({perc_pos_weights(cmby())}) # generate percent positivity
 
-      perc_positive = perc_pos_weights(cmby) # generate percent positivity
+    init_ppv = reactive({ppv(cmby())})
+    observeEvent(input$pred,
+      if(1+1 == 2){
+        shinyjs::hide(id = "FILEUPLOAD")
+        shinyjs::show(id = "TABSET")
+      }
 
-      init_ppv = ppv(cmby) # get actual model PPV
-
-      shinyjs::hide(id = "FILEUPLOAD")
-      shinyjs::show(id = "TABSET")
-    }
-  })
+    )
+  #})
+  #path = input$pred()
 
 
   weight <- eventReactive(input$button, {c(input$strat_weight, (1 - input$strat_weight))}, ignoreNULL = FALSE)
@@ -304,17 +310,17 @@ server <- function(input, output, session){
                                                                     .total_acres = sum(manual_acres()),
                                                                     .tot_acre_ratio = 1,
                                                                     .num_regions = 8,
-                                                                    .perc_positive = perc_positive,
+                                                                    .perc_positive = perc_positive(),
                                                                     .acre_weights = manual_acres()/sum(manual_acres()),
-                                                                    .init_ppv = init_ppv, preds = preds, spray_dist =F, update_weights = F, threshold = threshold_manual())})
+                                                                    .init_ppv = init_ppv(), preds = preds(), spray_dist =F, update_weights = F, threshold = threshold_manual())})
 
   simulated_data <- reactive({generate_data_object_shiny_app(.init_obj = weight(),
                                                              .total_acres = total_acres(),
                                                              .tot_acre_ratio = total_acres()/260000,
                                                              .num_regions = 8,
-                                                             .perc_positive = perc_positive,
+                                                             .perc_positive = perc_positive(),
                                                              .acre_weights = program_acre_weights,
-                                                             .init_ppv = init_ppv, preds = preds, spray_dist =F, threshold = threshold())})
+                                                             .init_ppv = init_ppv(), preds = preds(), spray_dist =F, threshold = threshold())})
 
 
   reactive_summary <- reactive({simulated_data()$by_region %>%

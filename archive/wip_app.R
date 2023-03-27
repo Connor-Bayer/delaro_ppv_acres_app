@@ -22,7 +22,8 @@ p_load(
   networkD3,
   formattable,
   shinyBS,
-  nloptr
+  nloptr,
+  shinyjs
 )
 
 #devtools::install_github('Connor-Bayer/themeBayer')
