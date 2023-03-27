@@ -36,13 +36,7 @@ program_acre_weights <- program_acre_weights # exclude west
 # setup files from which to work
 #preds <- load_baseline_data('regionalShape/regional_shapefile.shp', path_trial = juan_data_location)
 # preds = fread('preds_file.csv')
-cmby <- generate_cm_by(setDT(preds), by_column = 'CP_REGION')
 
-cmby$iter <- 1 #only one iter on baseline model
-
-perc_positive <- perc_pos_weights(cmby) # generate percent positivity
-
-init_ppv <- ppv(cmby) # get actual model PPV
 
 # Plot settings -----------------------------------------------------------
 # set theme for plots

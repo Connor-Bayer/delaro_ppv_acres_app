@@ -29,7 +29,7 @@ p_load(
   vroom
 )
 
-devtools::install_github('Connor-Bayer/themeBayer')
+#devtools::install_github('Connor-Bayer/themeBayer')
 p_load(themeBayer)
 
 source('src/baseline_analysis.R') ## analysis and data fcns
@@ -271,6 +271,13 @@ server <- function(input, output, session){
     if(!is.null(input$preds)){
 
       preds = reactive({read_rds(input$preds())})
+      cmby = generate_cm_by(setDT(preds), by_column = 'CP_REGION')
+
+      cmby$iter = 1 #only one iter on baseline model
+
+      perc_positive = perc_pos_weights(cmby) # generate percent positivity
+
+      init_ppv = ppv(cmby) # get actual model PPV
 
       shinyjs::hide(id = "FILEUPLOAD")
       shinyjs::show(id = "TABSET")
