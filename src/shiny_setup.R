@@ -3,10 +3,10 @@
 # set seed in order to always get identical draws
 set.seed(42)
 
-juan_data_location = '/Users/connorlennon/Downloads/corn_pre_spray_model_03_23_2023.csv'
-
 ### best file that matches data is:
 # /Users/connorlennon/Library/CloudStorage/OneDrive-Bayer/Delaro Data Request September 2021/all_years_validation_pre_spray_6_buac.csv"
+
+#juan_data_location = #### deprecated
 
 # Set initial acreage parameters ------------------------------------------
 max_program_acres <- 480000
@@ -35,7 +35,7 @@ program_acre_weights <- c(`CS Central Plains` = 15000,
 program_acre_weights <- program_acre_weights # exclude west
 # setup files from which to work
 #preds <- load_baseline_data('regionalShape/regional_shapefile.shp', path_trial = juan_data_location)
-preds = fread('/Users/connorlennon/Downloads/preds_file.csv')
+# preds = fread('preds_file.csv')
 cmby <- generate_cm_by(setDT(preds), by_column = 'CP_REGION')
 
 cmby$iter <- 1 #only one iter on baseline model
