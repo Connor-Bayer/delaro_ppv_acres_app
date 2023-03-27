@@ -1,0 +1,25 @@
+#logo_header {
+  background-color: #10384F;
+  color: white;
+  padding: 10px;
+  font-size: 32px;
+}
+#app_title {
+  font-size: 26px;
+  padding: 10px;
+}
+#ppvtext, #ppvtext.m, #intercept_ss, #intercept_nss {
+  font-size: 28px;
+  text-align: center;
+}
+#tp_bbp, #ntp_bbp, #tp_range, #ntp_range {
+  font-size: 28px;
+  text-align: center;
+}
+.shiny-input-container {
+  font-size: 20px;
+}
+.panel-default {
+  font-size: 26px;
+  text-align: center;
+}
