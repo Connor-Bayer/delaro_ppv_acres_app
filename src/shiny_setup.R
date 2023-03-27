@@ -3,8 +3,8 @@
 # set seed in order to always get identical draws
 set.seed(42)
 
-### best file that matches data is:
-# .../CloudStorage/OneDrive-Bayer/Delaro Data Request September 2021/all_years_validation_pre_spray_6_buac.csv"
+### best file that matches data (as of last update) is:
+# .../CloudStorage/OneDrive-Bayer/Delaro Data Request September 2021/corn_pre_spray_model_03_23_2023.csv"
 
 #juan_data_location = #### deprecated
 
