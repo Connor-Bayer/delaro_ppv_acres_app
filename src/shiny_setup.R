@@ -4,7 +4,7 @@
 set.seed(42)
 
 ### best file that matches data is:
-# /Users/connorlennon/Library/CloudStorage/OneDrive-Bayer/Delaro Data Request September 2021/all_years_validation_pre_spray_6_buac.csv"
+# .../CloudStorage/OneDrive-Bayer/Delaro Data Request September 2021/all_years_validation_pre_spray_6_buac.csv"
 
 #juan_data_location = #### deprecated
 
