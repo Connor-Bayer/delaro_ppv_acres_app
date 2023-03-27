@@ -242,16 +242,16 @@ ui_2 = fluidPage(
 
 
 
-    ), tabPanel(
-      'Assumptions/Explainer',
-      h2("What's going on here?", align = 'center'),
-      h4("Key Question: Acres -> PPV, is there a Relationship?", align = 'center'),
-      plotOutput('acre_ppv_xyplot', height = 700, width = 600),
-      h4("What is the model threshold?"),
-      h6("The model threshold dictates how sure the model must be in order to consider someone a potential enrollee"),
-      plotOutput('threshold_plot')
-
-    )
+    ),# tabPanel(
+    #   'Assumptions/Explainer',
+    #   h2("What's going on here?", align = 'center'),
+    #   h4("Key Question: Acres -> PPV, is there a Relationship?", align = 'center'),
+    #   plotOutput('acre_ppv_xyplot', height = 700, width = 600),
+    #   h4("What is the model threshold?"),
+    #   h6("The model threshold dictates how sure the model must be in order to consider someone a potential enrollee"),
+    #   plotOutput('threshold_plot')
+    #
+    # )
 
     ))))
 
