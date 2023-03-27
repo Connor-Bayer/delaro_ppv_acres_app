@@ -28,7 +28,7 @@ p_load(
   shinyjs
 )
 
-#devtools::install_github('Connor-Bayer/themeBayer')
+devtools::install_github('Connor-Bayer/themeBayer')
 p_load(themeBayer)
 
 source('src/baseline_analysis.R') ## analysis and data fcns
