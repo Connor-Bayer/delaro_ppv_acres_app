@@ -358,7 +358,7 @@ server <- function(input, output, session){
   output$plot2 <- histServer_v2('plot2', data = simulated_data_manual, name = 'default')
   output$sankey2 <- sankeyServer('sankey2', data = simulated_data_manual, name = 'd.m')
   output$acre_flow.m <- textServer_2('acre_flow.m', data = simulated_data_manual, name = 'acre_flow.m', type = 'acre_flow')
-  output$ppvtext.m <- textServer_2('ppvtext.m', data = simulated_data, name = 'ppv', type = 'ppv')
+  output$ppvtext.m <- textServer_2('ppvtext.m', data = simulated_data_manual, name = 'ppv', type = 'ppv')
 
   output$table_summary.m <- tableServer('table_summary.m', table_content = reactive_summary_manual, name = 'smry', type = 'ppv')
 
