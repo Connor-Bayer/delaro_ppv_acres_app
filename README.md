@@ -1,2 +1,3 @@
-# delaro_ppv_acres_app
+# Delaro PPV/Metrics Revisited Application
+
 Application code for the 'delaro revisiting metrics app'
