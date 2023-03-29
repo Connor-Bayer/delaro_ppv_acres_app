@@ -39,7 +39,7 @@ textServer_2 <- function(id, data, name, type) {
     output$text <- renderText({
       if (type == 'acre_flow') {
 
-        return(HTML(paste('<br> Under the acres chosen, Delaro Showcase provides ', "<B>",paste0("~",as.character(enrollment())),"</B>", ' acres with a sufficient BU/AC lift while avoiding ',"<B>", paste0("~$",as.character(nopayout())), "</B>",' in payouts <br>', 'The costs of the program would be',"<B>", paste0("~",as.character(lst_acres())), "</B>",' excluded acres where Delaro would have given a BU/AC lift and a total of ',"<B>", paste0("~$",as.character(payout())), "</B>",' in payouts. All numbers rounded to the nearest 200 acres.')))
+        return(HTML(paste('<br> Under the acres chosen, Delaro Showcase provides ', "<B>",paste0("~",as.character(enrollment())),"</B>", ' acres with a sufficient BU/AC lift while avoiding ',"<B>", paste0("~$",as.character(nopayout())), "</B>",' in payouts <br>', 'The costs of the program would be',"<B>", paste0("~",as.character(lst_acres())), "</B>",' excluded acres where Delaro would have given a BU/AC lift and a total of ',"<B>", paste0("~$",as.character(payout())), "</B>",' in payouts. All numbers rounded to the nearest 100 acres.')))
       } else if (type == 'ppv') {
         return(paste('Expected PPV:', round(mean(data()$default$ppv),4), 'with a 95% chance that the true value lies between', round(HDInterval::hdi(data()$default$ppv, credMass = .95)['lower'],4), 'and', round(HDInterval::hdi(data()$default$ppv, credMass = .95)['upper'],4)))
       }
